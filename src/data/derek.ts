@@ -1,126 +1,111 @@
 /**
- * Member-phone DEMO fixture — Derek Hale / 2024 Silverado.
- * Not the active credit union's book. Numbers match the live leftover walk
- * (Serra Chevrolet, leftover $31,400, typical insurance $28,911).
+ * Member-phone DEMO fixture — Derek Hale, new indirect auto loan member.
+ * Financed through a Peoples dealer partner without dealer-sold protection.
+ * Not the active credit union's live book.
  */
 
-export type DemoProductId = "gap" | "debt_protection" | "warranty";
+export type DemoProductId = "debt_protection" | "gap";
 
 export interface DemoProduct {
   id: DemoProductId;
   name: string;
-  sentence: string;
+  tagline: string;
   monthly: number;
   recommended: boolean;
+}
+
+export interface ProtectionBenefit {
+  title: string;
+  body: string;
 }
 
 export const DEREK = {
   firstName: "Derek",
   lastName: "Hale",
   fullName: "Derek Hale",
-  phone: "(989) 555-0133",
-  dealer: "Serra Chevrolet",
-  dealerFirst: "Serra",
+  initials: "DH",
+  email: "derek.h@email.com",
+  phone: "(515) 555-0133",
+  phoneLast4: "0133",
+  memberSince: "Aug 2025",
+  homeCity: "Fort Dodge, IA",
+  dealer: "Kruse Motors",
+  dealerCity: "Fort Dodge, IA",
+  loanFunded: "Aug 12, 2025",
+  daysSinceFunded: 18,
   vehicleYear: 2024,
-  vehicleMake: "Chevrolet",
-  vehicleModel: "Silverado",
-  vehicleTrim: "1500 LT",
-  vehicleLabel: "2024 Chevrolet Silverado 1500 LT",
-  leftover: 31_400,
-  typicalInsurance: 28_911,
-  stillOwe: 2_489,
-  monthlyPayment: 548.12,
-  apr: 6.74,
-  remainingTermMonths: 60,
-  odometer: "est. 148 mi",
-  headline: "Derek, Serra didn't put protection on this Silverado.",
-  totaledLine: "If totaled next month you still owe about $2,489.",
-  unprotectedLine: "Your $31,400 leftover is not protected.",
-  vehicleLine: "2024 Chevrolet Silverado 1500 LT · $548.12/mo · est. 148 mi",
+  vehicleMake: "Ford",
+  vehicleModel: "F-150 Raptor",
+  vehicleTrim: "SuperCrew 4x4",
+  vehicleColor: "Iconic Silver",
+  vehicleLabel: "2024 Ford F-150 Raptor SuperCrew 4x4",
+  vehicleImage: "/derek-raptor-hero.png",
+  vehicleImageAlt: "Derek Hale's 2024 Ford F-150 Raptor in Iconic Silver",
+  loanBalance: 72_400,
+  typicalInsurance: 65_180,
+  gapAmount: 7_220,
+  monthlyPayment: 1_089.42,
+  apr: 6.49,
+  remainingTermMonths: 72,
+  odometer: "112 mi",
+  accountLast4: "4892",
+  vinLast6: "7R4821",
 } as const;
 
-export const DEREK_PRODUCTS: DemoProduct[] = [
+/** Plain-language benefits — copy references the member's vehicle where it helps. */
+export const PROTECTION_BENEFITS: ProtectionBenefit[] = [
   {
-    id: "gap",
-    name: "GAP",
-    sentence: "Wrecked: GAP on that $2,489",
-    monthly: 14,
-    recommended: true,
+    title: "Life",
+    body: "If the unexpected happens, your Raptor loan balance is paid — your family isn't left with the payment.",
   },
   {
-    id: "debt_protection",
-    name: "Debt protection",
-    sentence: "Can't work: debt protection $28.89/mo",
-    monthly: 28.89,
-    recommended: false,
+    title: "Disability",
+    body: "Injured and can't work? Your monthly payment is covered while you recover.",
   },
   {
-    id: "warranty",
-    name: "Warranty",
-    sentence: "Shop bill: warranty $34/mo on this Silverado",
-    monthly: 34,
-    recommended: false,
+    title: "Job loss",
+    body: "Laid off? Involuntary unemployment coverage helps keep your loan current.",
   },
 ];
 
-export const WHY_THIS_TRUCK = {
-  timing:
-    "Typical timing for a 2024 half-ton — not a service record we have. Odometer is estimated (148 miles).",
-  totaled:
-    "If totaled next month you still owe about $2,489. Typical insurance on this leftover is $28,911.",
-  section: "What usually breaks on a half-ton",
-  rows: [
+export function derekProducts(gapAmount: number): DemoProduct[] {
+  const gapLabel = gapAmount.toLocaleString("en-US");
+  return [
     {
-      when: "This month",
-      miles: "now",
-      what: "The truck left the lot. Value drops faster than the loan.",
-      tie: "GAP is for the leftover if this Silverado is totaled before insurance catches the balance.",
+      id: "debt_protection",
+      name: "Member Protection",
+      tagline: "Life, disability & job-loss coverage on your Raptor payment",
+      monthly: 38.49,
+      recommended: true,
     },
     {
-      when: "18 months",
-      miles: "15–20k",
-      what: "Half-ton brakes and tires on real work miles.",
-      tie: "Warranty is the shop bill after factory coverage — not the leftover loan.",
+      id: "gap",
+      name: "GAP coverage",
+      tagline: `Covers the $${gapLabel} gap if your Raptor is totaled before insurance catches up`,
+      monthly: 22,
+      recommended: false,
     },
-    {
-      when: "3–4 years",
-      miles: "36–50k",
-      what: "Typical truck battery replacement on a half-ton.",
-      tie: "A battery is a shop ticket. Typical timing — we do not have this truck's service record.",
-    },
-    {
-      when: "5 years",
-      miles: "60k",
-      what: "Typical factory powertrain window ends — transmission, engine.",
-      tie: "That is a shop invoice, not a payment. Debt protection does not pay the dealer bay.",
-    },
-    {
-      when: "Any month",
-      miles: "now",
-      what: "If work stops, the payment is still due.",
-      tie: "Debt protection pays this loan at the credit union. It is a monthly fee, not added principal.",
-    },
-  ],
+  ];
+}
+
+export const DEREK_PRODUCTS = derekProducts(DEREK.gapAmount);
+
+export const LEARN_MORE = {
+  intro:
+    "When you finance at the dealer, protection products are optional — many members leave without them. Peoples Credit Union reaches out on new indirect loans so you know what's available and can enroll in minutes, on your phone.",
+  gap:
+    "New vehicles lose value faster than the loan balance drops. If your Raptor is totaled early, insurance may pay less than you owe — that's the gap. GAP coverage pays the difference so you're not paying out of pocket.",
+  feeNote:
+    "Protection is a separate monthly fee on your loan — it does not increase your loan amount or change your note. Cancel anytime.",
 } as const;
 
 const roundMoney = (n: number) => Math.round(n * 100) / 100;
 
-/** Example quote only — does not change this note. */
-export function whatIfPayment(extraMonths: number) {
-  const principal = DEREK.leftover;
-  const term = DEREK.remainingTermMonths + extraMonths;
-  const r = DEREK.apr / 100 / 12;
-  const newPayment =
-    extraMonths === 0
-      ? DEREK.monthlyPayment
-      : r === 0
-        ? roundMoney(principal / term)
-        : roundMoney((principal * r * (1 + r) ** term) / ((1 + r) ** term - 1));
-  const oldInterest = DEREK.monthlyPayment * DEREK.remainingTermMonths - principal;
-  const newInterest = newPayment * term - principal;
-  return {
-    extraMonths,
-    newPayment,
-    extraInterest: roundMoney(Math.max(0, newInterest - oldInterest)),
-  };
+export function enrollmentTotal(selected: DemoProductId[]) {
+  return roundMoney(
+    selected.reduce((sum, id) => {
+      const p = DEREK_PRODUCTS.find((x) => x.id === id);
+      return sum + (p?.monthly ?? 0);
+    }, 0),
+  );
 }

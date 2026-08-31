@@ -5,12 +5,12 @@ export default function SelfServe() {
   return (
     <div className="animate-fade-in">
       <PageHeader
-        title="Self-serve"
-        subtitle="Member phone · leftover → Add → Enroll. DEMO member — not this credit union’s book."
+        title="Member self-serve"
+        subtitle="New indirect member · verify in seconds · enroll protection the dealer didn't include. DEMO member — not live book data."
       >
         <span className="pill bg-ca-50 text-ca-700 ring-1 ring-ca-100">
-          <span className="h-1.5 w-1.5 rounded-full bg-accent-500" /> DEMO · Derek Hale · 2024
-          Silverado
+          <span className="h-1.5 w-1.5 rounded-full bg-accent-500" /> ~60 sec · Derek Hale ·
+          2024 F-150 Raptor · Kruse Motors
         </span>
       </PageHeader>
 
