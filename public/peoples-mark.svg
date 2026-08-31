@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Peoples Credit Union broken double-arc ring, redrawn from pcu-logo.svg:
+       crimson #96262C left semicircle + grey #76777A right semicircle, each split
+       by a small horizontal break at 9 o'clock / 3 o'clock. r=38, C=238.76. -->
+  <g fill="none" stroke-width="10" stroke-linecap="butt">
+    <!-- crimson: left side (two arcs, gap at 9 o'clock) -->
+    <circle cx="50" cy="50" r="38" stroke="#96262C"
+      stroke-dasharray="55.05 9.29 55.05 119.38" transform="rotate(90 50 50)" />
+    <!-- grey: right side (two arcs, gap at 3 o'clock) -->
+    <circle cx="50" cy="50" r="38" stroke="#76777A"
+      stroke-dasharray="55.05 9.29 55.05 119.38" transform="rotate(270 50 50)" />
+  </g>
+</svg>

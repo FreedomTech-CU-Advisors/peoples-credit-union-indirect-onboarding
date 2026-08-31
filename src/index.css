@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+
+  /* Canvas defaults (rgb triplets) — applyBrand() overwrites these with the active
+     brand before first render; keeping them here avoids any unthemed flash. */
+  --ca-50: 253 244 238; --ca-100: 250 229 214; --ca-200: 244 200 168;
+  --ca-300: 236 165 118; --ca-400: 226 138 77; --ca-500: 215 113 45;
+  --ca-600: 215 113 45; --ca-700: 209 81 48; --ca-800: 173 66 38;
+  --ca-900: 138 55 31; --ca-950: 75 29 16;
+
+  --ink-50: 244 242 239; --ink-100: 232 228 223; --ink-200: 214 208 200;
+  --ink-300: 183 175 164; --ink-400: 143 135 124; --ink-500: 110 106 102;
+  --ink-600: 84 81 77; --ink-700: 64 62 59; --ink-800: 46 44 42;
+  --ink-900: 58 58 58; --ink-950: 33 31 29;
+
+  --accent-50: 253 243 238; --accent-100: 251 226 214; --accent-200: 246 194 169;
+  --accent-300: 238 155 114; --accent-400: 227 115 63; --accent-500: 209 81 48;
+  --accent-600: 185 66 31; --accent-700: 151 53 27; --accent-800: 122 45 26;
+  --accent-900: 100 39 24;
+
+  --font-display: "Aglet Slab", "Zilla Slab", ui-serif, Georgia, Cambria,
+    "Times New Roman", serif;
+  --font-body: "DIN Next", "D-DIN", "Barlow", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  /* Brand off-white background / ink text (ink-50 / ink-900). */
+  background: rgb(var(--ink-50));
+  color: rgb(var(--ink-900));
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Headings use the brand display face. */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+}
+
+/* Thin, branded scrollbars (light brand tint). */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--ca-200)) transparent;
+}
+*::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgb(var(--ca-200));
+  border-radius: 999px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--ca-300));
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl bg-white shadow-card border border-ink-200/60;
+  }
+  .pill {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold;
+  }
+}
