@@ -113,9 +113,7 @@ export interface MonthPoint {
 }
 
 // ----------------------------- reference data -----------------------------
-// Branch network comes from the active brand (Canvas → Colorado, Mazuma → Kansas City
-// metro, CU of America → Wichita and south-central Kansas). Same seeded numbers either
-// way — only the market changes.
+// Branch network is Peoples Credit Union (central Iowa).
 export const BRANCHES: Branch[] = activeBrand.branches;
 
 const FIRST = [

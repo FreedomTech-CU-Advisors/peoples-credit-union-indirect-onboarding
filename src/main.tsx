@@ -5,7 +5,7 @@ import App from "./App";
 import { applyBrand } from "./brand";
 import "./index.css";
 
-// Push the active brand's palette/fonts/title onto the document before first paint.
+// Lock chrome to Peoples (and drop any leftover multi-CU switcher state) before first paint.
 applyBrand();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

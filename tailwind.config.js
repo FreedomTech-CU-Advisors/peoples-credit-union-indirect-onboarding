@@ -1,9 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
-// All brand tokens resolve through CSS variables so the dashboard can be presented
-// as any configured credit union (see src/brand/brands.ts — Canvas, Mazuma, CU of
-// America). `applyBrand()` writes the active brand's rgb triplets onto :root before
-// first render; src/index.css carries the Canvas defaults as a no-flash fallback.
+// Brand tokens resolve through CSS variables written by applyBrand() (Peoples only).
+// src/index.css carries the Peoples rgb triplets as a no-flash fallback.
 const ramp = (name, steps) =>
   Object.fromEntries(steps.map((s) => [s, `rgb(var(--${name}-${s}) / <alpha-value>)`]));
 const FULL = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
@@ -14,15 +12,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Primary brand ramp (Canvas orange / Mazuma cyan / CU of America blue).
+        // Primary brand ramp (Peoples crimson / maroon).
         ca: ramp("ca", FULL),
         // Neutral "ink" ramp — sidebar, body ink, muted text.
         ink: ramp("ink", FULL),
-        // Accent ramp (Canvas terracotta / Mazuma + CUoA red).
+        // Accent ramp (Peoples gold).
         accent: ramp("accent", ACCENT),
       },
       fontFamily: {
-        // Full per-brand stacks live in src/brand/brands.ts.
+        // Stacks live in src/brand/brands.ts (Peoples / Montserrat).
         sans: "var(--font-body)",
         slab: "var(--font-display)",
       },
